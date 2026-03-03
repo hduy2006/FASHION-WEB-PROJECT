@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const mobileToggle = document.getElementById('mobile-toggle');
     const navMenu = document.getElementById('nav-menu');
-    const sections = document.querySelectorAll('.section, .hero');
+    const sections = document.querySelectorAll('section');
     const navItems = document.querySelectorAll('.nav-item');
-    const navbar = document.querySelector('.navbar');
+    const header = document.querySelector('header');
     
     // Khởi tạo giỏ hàng từ localStorage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -48,11 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (window.scrollY > 50) {
-            navbar.style.boxShadow = '0 15px 40px rgba(0,51,102,0.15)';
-            navbar.style.background = 'rgba(253, 251, 247, 0.85)';
+            header.style.boxShadow = '0 15px 40px rgba(0,51,102,0.15)';
+            header.style.background = 'rgba(253, 251, 247, 0.85)';
         } else {
-            navbar.style.boxShadow = '0 8px 32px rgba(31, 38, 135, 0.1)';
-            navbar.style.background = 'rgba(253, 251, 247, 0.7)';
+            header.style.boxShadow = '0 8px 32px rgba(31, 38, 135, 0.1)';
+            header.style.background = 'rgba(253, 251, 247, 0.7)';
         }
     });
 
