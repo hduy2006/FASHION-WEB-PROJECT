@@ -148,6 +148,7 @@ nav a.active {
     align-items: center;
     gap: 8px;
     white-space: nowrap;
+    text-decoration: none;
 }
 
 .btn-login:hover,
@@ -156,6 +157,7 @@ nav a.active {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0, 51, 102, 0.3);
 }
+
 
 /* ===== HERO ===== */
 .hero {

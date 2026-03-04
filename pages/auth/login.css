@@ -1,145 +1,19 @@
-/*<!--Nguyen Ba Thien An- B2405484-->*/
-:root {
-    --primary-blue: #003366;
-    --accent-blue: #0056b3;
-    --white-cream: #fdfbf7;
-    --text-dark: #333333;
-}
+/* Nguyen Ba Thien An - B2405484 */
+/* Chỉ chứa styles riêng cho trang đăng nhập / quên mật khẩu.
+   Navbar, footer, reset đã được kế thừa từ ../../assets/style.css */
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body { 
-    font-family: 'Poppins', sans-serif; 
-    background: var(--white-cream); 
-    color: var(--text-dark); 
-}
-
-.navbar {
-    position: fixed;
-    top: 0; width: 100%;
-    height: 70px;
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    padding: 0 3%;
-    background: rgba(253, 251, 247, 0.7);
-    backdrop-filter: blur(20px);
-    z-index: 1000;
-    border-bottom: 1px solid rgba(0,86,179,0.2);
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
-    animation: slideDown 0.5s ease-out;
-}
-
-@keyframes slideDown {
-    from { transform: translateY(-100%); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-.menu-mobile { display: none; color: var(--primary-blue); }
-
-.logo { 
-    color: var(--primary-blue); 
-    font-weight: 700; 
-    letter-spacing: 3px; 
-    font-size: 18px;
-    margin-right: 5%;
-    animation: fadeInLeft 0.6s ease-out;
-    white-space: nowrap;
-}
-
-@keyframes fadeInLeft {
-    from { transform: translateX(-50px); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-
-.nav-links { 
-    display: flex; 
-    list-style: none; 
-    gap: 50px;
-}
-
-.nav-links a { 
-    text-decoration: none; 
-    color: var(--text-dark); 
-    font-size: 13px; 
-    text-transform: uppercase; 
-    transition: 0.3s;
-    position: relative;
-    font-weight: 500;
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 0;
-    height: 3px;
-    background: var(--primary-blue);
-    transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-    width: 100%;
-}
-
-.nav-links a.active {
-    color: var(--primary-blue);
-    font-weight: 600;
-}
-
-.nav-icons {
-    display: flex;
-    gap: 15px;
-    margin-left: 5%;
-}
-
-.btn-login, .btn-cart {
-    background: var(--primary-blue);
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    white-space: nowrap;
-}
-
-.btn-login:hover, .btn-cart:hover {
-    background: var(--accent-blue);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 51, 102, 0.3);
-}
-
-@media (max-width: 768px) {
-    .navbar { padding: 0 15px; }
-    .logo { margin-right: auto; }
-    .nav-links { gap: 20px; }
-    .nav-icons { margin-left: auto; gap: 10px; }
-    .btn-login, .btn-cart {
-        padding: 8px 12px;
-        font-size: 12px;
-    }
-}
-
-/* ===== MAIN LOGIN ===== */
+/* ===== WRAPPER ===== */
 .login-wrapper {
-    min-height: calc(100vh - 70px); 
+    min-height: calc(100vh - 70px);
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--white-cream);
-    padding: 20px;
+    padding: 40px 20px;
     margin-top: 70px;
 }
 
-/* THẺ ĐĂNG NHẬP */
+/* ===== THẺ ĐĂNG NHẬP ===== */
 .login-container {
     width: 100%;
     max-width: 450px;
@@ -147,23 +21,36 @@ body {
     background: rgba(255, 255, 255, 0.9);
     border-radius: 20px;
     box-shadow: 0 20px 40px rgba(0, 51, 102, 0.1);
-    animation: slideIn 0.6s ease-out; 
+    animation: slideIn 0.6s ease-out;
 }
 
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== HEADER FORM ===== */
 .login-header {
-    font-size: 22px;
     text-align: center;
     margin-bottom: 10px;
-    letter-spacing: 2px;
+}
+
+.auth-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    margin-bottom: 8px;
 }
 
 .subtitle {
     font-size: 14px;
     color: #666;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
 
-/* KIỂU NHẬP */
+/* ===== INPUT ===== */
 .input-group {
     text-align: left;
     margin-bottom: 25px;
@@ -184,6 +71,9 @@ body {
     border: 1px solid rgba(0, 51, 102, 0.2);
     border-radius: 8px;
     font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    background: var(--white-cream);
+    color: var(--text-dark);
     transition: 0.3s;
 }
 
@@ -193,28 +83,84 @@ body {
     box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
 }
 
-/* NÚT BẤM CHÍNH */
-.btn-login-submit {
+/* ===== FORM OPTIONS (remember / forgot) ===== */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: var(--text-dark);
+}
+
+.forgot-pass {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.forgot-pass:hover {
+    color: var(--accent-blue);
+    text-decoration: underline;
+}
+
+/* ===== NÚT SUBMIT CHUNG ===== */
+.btn-auth-submit {
     width: 100%;
     padding: 15px;
     background: var(--primary-blue);
     color: white;
     border: none;
-    border-radius: 50px; 
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
     font-weight: 600;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: 0.4s;
+    transition: background 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
     margin-top: 10px;
 }
 
-.btn-login-submit:hover {
+.btn-auth-submit:hover {
     background: var(--accent-blue);
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(0, 51, 102, 0.3);
 }
 
-/* QUÊN MẬT KHẨU */
+/* ===== CHÂN THẺ ===== */
+.auth-card-footer {
+    margin-top: 30px;
+    font-size: 13px;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 20px;
+    color: var(--text-dark);
+}
+
+.link-auth {
+    display: inline-block;
+    margin-top: 6px;
+    color: var(--primary-blue);
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: 0.2s;
+}
+
+.link-auth:hover {
+    color: var(--accent-blue);
+    text-decoration: underline;
+}
+
+/* ===== QUÊN MẬT KHẨU ===== */
 .forgot-password-main {
     min-height: calc(100vh - 70px);
     display: flex;
@@ -222,109 +168,14 @@ body {
     justify-content: center;
     background: var(--white-cream);
     padding: 20px;
-}
-
-/*CHÂN THẺ LOGIN */
-.login-footer {
-    margin-top: 30px;
-    font-size: 13px;
-    text-align: center;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-    padding-top: 20px;
-}
-
-.link-register {
-    display: inline-block;
-    margin-top: 5px;
-    color: var(--primary-blue);
-    font-weight: 700;
-    text-decoration: none;
-}
-/* ===== FOOTER ===== */
-footer {
-    background: linear-gradient(135deg, var(--primary-blue), rgba(0, 86, 179, 0.8));
-    color: white;
-    padding: 60px 0 30px;
-    border-top: 2px solid rgba(0, 86, 179, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-footer::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -10%;
-    width: 400px;
-    height: 400px;
-    background: rgba(255, 215, 0, 0.05);
-    border-radius: 50%;
-    animation: float 8s ease-in-out infinite;
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    margin-bottom: 40px;
-    position: relative;
-    z-index: 10;
-}
-
-.footer-about h3 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    letter-spacing: 3px;
-}
-
-.footer-about p {
-    font-size: 14px;
-    line-height: 1.8;
-    opacity: 0.9;
-}
-
-.footer-contact h4 {
-    font-size: 16px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.footer-contact p {
-    font-size: 14px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    transition: 0.3s;
-    opacity: 0.9;
-}
-
-.footer-contact p:hover {
-    opacity: 1;
-    transform: translateX(5px);
-}
-
-.footer-contact i {
-    font-size: 16px;
-    width: 20px;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 13px;
-    opacity: 0.8;
+    margin-top: 70px;
 }
 
 .simple-auth-container {
     width: 100%;
     max-width: 500px;
     text-align: center;
+    animation: slideIn 0.6s ease-out;
 }
 
 .simple-title {
@@ -345,7 +196,7 @@ footer::before {
 
 .input-line-group {
     margin-bottom: 40px;
-    border-bottom: 1px solid #ccc; 
+    border-bottom: 1px solid #ccc;
 }
 
 .input-line-group input {
@@ -355,8 +206,9 @@ footer::before {
     background: transparent;
     outline: none;
     font-size: 15px;
+    font-family: 'Poppins', sans-serif;
     color: var(--text-dark);
-    text-align: center; 
+    text-align: center;
 }
 
 .input-line-group input::placeholder {
@@ -366,24 +218,25 @@ footer::before {
     letter-spacing: 1px;
 }
 
-/* NÚT BẤM KHỐI ĐẬM */
 .btn-reset-password {
     width: 100%;
-    background: var(--primary-blue); 
+    background: var(--primary-blue);
     color: white;
     padding: 18px;
     border: none;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     letter-spacing: 2px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: background 0.3s ease, letter-spacing 0.3s ease;
     text-transform: uppercase;
     font-size: 13px;
+    border-radius: 4px;
 }
 
 .btn-reset-password:hover {
     background: var(--accent-blue);
-    letter-spacing: 3px; 
+    letter-spacing: 3px;
 }
 
 .simple-footer {
@@ -396,46 +249,22 @@ footer::before {
     color: var(--text-dark);
     text-decoration: underline;
     letter-spacing: 1px;
+    transition: color 0.2s;
 }
 
-/* ===== MOBILE RESPONSIVE ===== */
+.back-link:hover {
+    color: var(--primary-blue);
+}
+
+/* ===== MOBILE ===== */
 @media (max-width: 768px) {
-    .navbar {
-        padding: 0 15px;
+    .login-container {
+        padding: 35px 25px;
     }
 
-    .logo {
-        margin-right: auto;
-    }
-
-    .nav-links {
-        gap: 20px;
-    }
-
-    .nav-icons {
-        margin-left: auto;
+    .form-options {
+        flex-direction: column;
+        align-items: flex-start;
         gap: 10px;
-    }
-
-    .btn-login, .btn-cart {
-        padding: 8px 12px;
-        font-size: 12px;
-    }
-
-    .hero-content h1 {
-        font-size: 40px;
-    }
-
-    .section-title {
-        font-size: 28px;
-    }
-
-    .card {
-        flex: 0 0 200px;
-    }
-
-    .footer-container {
-        grid-template-columns: 1fr;
-        gap: 30px;
     }
 }
