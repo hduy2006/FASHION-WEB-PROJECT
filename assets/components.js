@@ -98,7 +98,7 @@
 })();
 
 const headerHTML = `
-    <a href="/index.html" class="logo">ETHEREAL</a>
+    <a href="/index.html" class="logo">DEUX</a>
             <nav id="nav-menu">
                 <ul>
                     <li><a href="/index.html" class="nav-item">Trang chủ</a></li>
@@ -132,18 +132,18 @@ const headerHTML = `
 const footerHTML = `
         <div class="container footer-grid">
             <div>
-                <h3 class="logo">ETHEREAL</h3>
+                <h3 class="logo">DEUX</h3>
                 <p>Thương hiệu thời trang cao cấp mang phong cách hiện đại, tối giản.</p>
             </div>
             <div class="footer-contact">
                 <h4>Thông tin liên hệ</h4>
                 <p><i class="fas fa-map-marker-alt"></i> 123 Đường Blue, Quận 1, TP. HCM</p>
                 <p><i class="fas fa-phone"></i> +84 123 456 789</p>
-                <p><i class="fas fa-envelope"></i> contact@etherealblue.com</p>
+                <p><i class="fas fa-envelope"></i> contact@deux.com</p>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 Ethereal Blue. All rights reserved.
+            &copy; 2026 DEUX. All rights reserved.
         </div>
 `;
 

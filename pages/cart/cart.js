@@ -1,5 +1,5 @@
 /* ===================================================
-   CART.JS — Ethereal Blue | Logic Giỏ Hàng
+   CART.JS — DEUX | Logic Giỏ Hàng
    =================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let appliedCoupon = '';
 
     const COUPONS = {
-        'ETHEREAL10': 10,
+        'DEUX10': 10,
         'BLUE20': 20,
         'VIP30': 30,
     };
@@ -128,6 +128,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="item-img" style="${imgStyle}"></div>
                 <div class="item-info">
                     <div class="item-name">${item.title}</div>
+                    <div class="item-size-selector" style="margin-bottom: 8px;">
+                        <span style="font-size: 13px; color: #666; margin-right: 5px;">Size:</span>
+                        <select class="size-select" data-idx="${idx}" style="padding: 2px 8px; border-radius: 4px; border: 1px solid #ddd; font-size: 13px; outline: none; cursor: pointer;">
+                            ${(item.availableSizes || ['S', 'M', 'L', 'XL']).map(s => 
+                                `<option value="${s}" ${item.size === s ? 'selected' : ''}>${s}</option>`
+                            ).join('')}
+                        </select>
+                    </div>
                     <div class="item-price-unit">${item.price} / sản phẩm</div>
                     <div class="qty-control">
                         <button class="qty-btn btn-minus" data-idx="${idx}">−</button>
@@ -142,6 +150,30 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
 
             list.appendChild(itemEl);
+        });
+
+        // Event đổi Size
+        list.querySelectorAll('.size-select').forEach(select => {
+            select.addEventListener('change', (e) => {
+                const idx = +e.target.dataset.idx;
+                const newSize = e.target.value;
+                const currentItem = cart[idx];
+                
+                // Kiểm tra xem sản phẩm cùng id và cùng newSize đã có trong giỏ chưa (ngoại trừ chính nó)
+                const existIdx = cart.findIndex((p, i) => i !== idx && p.id === currentItem.id && p.size === newSize);
+                
+                if (existIdx !== -1) {
+                    // Đã có sn -> Gộp số lượng và xóa item hiện tại
+                    cart[existIdx].quantity += currentItem.quantity;
+                    cart.splice(idx, 1);
+                } else {
+                    // Chưa có -> Cập nhật trực tiếp
+                    currentItem.size = newSize;
+                }
+                
+                saveCart();
+                renderCart(); // Render lại vì có thể làm thay đổi index mảng giỏ hàng
+            });
         });
 
         // Events trên items
@@ -278,7 +310,10 @@ document.addEventListener('DOMContentLoaded', () => {
             return `
                 <div class="mini-item">
                     <div class="mini-item-img" style="${imgStyle}"></div>
-                    <span class="mini-item-name">${item.title} ×${item.quantity}</span>
+                    <div style="display: flex; flex-direction: column; flex: 1; min-width: 0;">
+                        <span class="mini-item-name">${item.title} ×${item.quantity}</span>
+                        ${item.size ? `<span style="font-size: 11px; color: #888;">Size: ${item.size}</span>` : ''}
+                    </div>
                     <span class="mini-item-price">${formatPrice(parsePrice(item.price) * item.quantity)}</span>
                 </div>
             `;
@@ -601,7 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Gợi ý mã demo
     setTimeout(() => {
         if (cart.length > 0) {
-            showNotif('💡 Thử mã: ETHEREAL10, BLUE20, VIP30');
+            showNotif('💡 Thử mã: DEUX10, BLUE20, VIP30');
         }
     }, 1500);
 });

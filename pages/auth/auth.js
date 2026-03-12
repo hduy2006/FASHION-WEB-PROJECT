@@ -1,4 +1,4 @@
-/* ===== AUTH.JS — Ethereal Blue =====
+/* ===== AUTH.JS — DEUX =====
    Xử lý đăng ký, đăng nhập, quên mật khẩu
    Lưu trữ qua localStorage:
      - "eb_users"       : mảng tài khoản

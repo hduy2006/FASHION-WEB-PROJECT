@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.innerHTML = `
             ${badgeHTML}
             <div class="img-placeholder">
-                <img src="${product.image}" alt="${product.name}" loading="lazy"
+                <img src="${product.images[0]}" alt="${product.name}" loading="lazy"
                      onerror="this.src='https://placehold.co/500x500/e0e8f4/0056b3?text=No+Image'">
             </div>
             <div class="card-content">
@@ -142,15 +142,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const price = hasSale ? formatPrice(discountedPrice) : formatPrice(product.price);
-            const existingProduct = cart.find(p => p.title === product.name);
+            const size = (product.sizes && product.sizes.length > 0) ? product.sizes[0] : 'S'; // Mặc định size đầu tiên của product
+            const existingProduct = cart.find(p => p.title === product.name && p.size === size);
             if (existingProduct) {
                 existingProduct.quantity++;
             } else {
-                cart.push({ id: Date.now(), title: product.name, price, quantity: 1 });
+                cart.push({ id: product.id, title: product.name, price, quantity: 1, image: product.images[0], size: size, availableSizes: product.sizes });
             }
             localStorage.setItem(_cartKey, JSON.stringify(cart));
             updateCartCount();
-            showNotification(`${product.name} đã thêm vào giỏ hàng!`);
+            showNotification(`Đã thêm ${product.name} vào giỏ hàng!`);
 
             const btn = this;
             const originalText = btn.textContent;

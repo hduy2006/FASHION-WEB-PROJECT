@@ -181,8 +181,10 @@ function createCard(product) {
   card.innerHTML = `
     ${badgeHTML}
     <div class="img-placeholder">
-      <img src="${product.image}" alt="${product.name}" loading="lazy"
-           onerror="this.src='https://placehold.co/500x500/e0e8f4/0056b3?text=No+Image'">
+      <a href="/pages/product-detail/product-detail.html?id=${product.id}">
+        <img src="${product.images[0]}" alt="${product.name}" loading="lazy"
+             onerror="this.src='https://placehold.co/500x500/e0e8f4/0056b3?text=No+Image'">
+      </a>
     </div>
     <div class="card-content">
       <h3 class="card-title">${product.name}</h3>
@@ -207,15 +209,16 @@ function createCard(product) {
 
     const finalPrice = hasSale ? _fmt(salePrice) : _fmt(product.price);
     const cart = _getCart();
-    const existing = cart.find(p => p.id === product.id);
+    const size = (product.sizes && product.sizes.length > 0) ? product.sizes[0] : 'S'; // Mặc định size đầu tiên của product
+    const existing = cart.find(p => p.id === product.id && p.size === size);
     if (existing) {
       existing.quantity++;
     } else {
-      cart.push({ id: product.id, title: product.name, price: finalPrice, quantity: 1 });
+      cart.push({ id: product.id, title: product.name, price: finalPrice, quantity: 1, size: size, image: product.images[0], availableSizes: product.sizes });
     }
     _saveCart(cart);
     _updateCartBadge();
-    _notify(`✓ ${product.name} đã thêm vào giỏ!`);
+    _notify(`Đã thêm ${product.name} vào giỏ hàng!`);
 
     const btn = this;
     btn.innerHTML = '<i class="fa-solid fa-check"></i> Đã thêm';
